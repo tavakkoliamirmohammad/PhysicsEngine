@@ -61,7 +61,7 @@ CollisionInfo CollisionDetector::Detect(Box2D* box1, Box2D* box2)
 	auto n2 = box2_vertices.size();
 
 	float minPenetration = 1e10;
-	bool isInternal = box1->GetShapeType() == BoxType::Internal;
+	bool isInternal = box1->GetShapeType() == ShapeType::Internal;
 
 	bool isShapeInFrontOfEdge = true;
 
@@ -135,7 +135,7 @@ std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Box2D*>* boxes)
 			auto collision_info_1 = Detect(box1, box2);
 			auto collision_info_2 = Detect(box2, box1);
 
-			bool isInternal = collision_info_1.box1->GetShapeType() == BoxType::Internal;
+			bool isInternal = collision_info_1.box1->GetShapeType() == ShapeType::Internal;
 
 			if (collision_info_1.isCollided && (isInternal || collision_info_2.isCollided))
 			{

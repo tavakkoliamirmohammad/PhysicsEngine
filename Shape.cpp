@@ -2,8 +2,9 @@
 
 using namespace std;
 
-Shape::Shape() :
-        position(0), linearVelocity(0), force(0),
+Shape::Shape(float mass, ShapeType type) :
+        shapeType(type),
+        position(0), linearVelocity(0), momentOfInertia(0), mass(mass), force(0),
         angle(0), angularVelocity(0), torque(0) {
 
 }

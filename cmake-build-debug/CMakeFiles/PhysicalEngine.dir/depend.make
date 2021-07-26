@@ -3,17 +3,20 @@
 
 CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o: ../Box2D.cpp
 CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o: ../Box2D.h
+CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/Circle.cpp.o: ../Circle.cpp
 
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../CollisionDetector.cpp
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../CollisionDetector.h
+CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o: ../CollisionDetector.h
 CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o: ../CollisionResolver.cpp
 CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o: ../CollisionResolver.h
+CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../CollisionDetector.h
@@ -22,12 +25,14 @@ CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../Game.cpp
 CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../Game.h
 CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../PhysicalEngine.h
 CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../Scene.h
+CMakeFiles/PhysicalEngine.dir/Game.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../CollisionDetector.h
 CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../CollisionResolver.h
 CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../PhysicalEngine.cpp
 CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../PhysicalEngine.h
+CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../CollisionDetector.h
@@ -35,6 +40,7 @@ CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../CollisionResolver.h
 CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../PhysicalEngine.h
 CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../Scene.cpp
 CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../Scene.h
+CMakeFiles/PhysicalEngine.dir/Scene.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/Shape.cpp.o: ../Shape.cpp
 CMakeFiles/PhysicalEngine.dir/Shape.cpp.o: ../Shape.h

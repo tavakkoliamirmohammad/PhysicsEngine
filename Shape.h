@@ -5,10 +5,15 @@
 #include "glm/gtc/type_ptr.hpp"
 #include <vector>
 
+enum class ShapeType {
+    Internal,
+    External
+};
+
 class Shape {
 public:
 
-    Shape();
+    Shape(float mass, ShapeType type);
 
     void MoveTo(float x, float y, bool relative = false);
 
@@ -32,9 +37,9 @@ public:
 
     inline float GetAngularVelocity() const { return this->angularVelocity; }
 
-    inline ShapeDetail *GetShapeDetail() const { return this->shapeDetail; }
-
     virtual glm::vec2 GetCentroid() = 0;
+
+    inline ShapeType GetShapeType() { return this->shapeType; }
 
     inline float GetTorque() const { return this->torque; }
 
@@ -45,7 +50,6 @@ public:
     inline float GetMomentOfInertia() const { return this->momentOfInertia; }
 
     float GetAngularMass(glm::vec2 r, glm::vec2 n) const;
-
 
 protected:
     glm::vec2 position;
@@ -59,7 +63,7 @@ protected:
     float mass;
     float momentOfInertia;
 
-    ShapeDetail *shapeDetail{};
+    ShapeType shapeType;
 };
 
 #endif //PHYSICALENGINE_SHAPE_H

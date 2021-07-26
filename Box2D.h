@@ -5,17 +5,10 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "Shape.h"
 
-enum class BoxType {
-    Internal,
-    External
-};
-
 class Box2D : public Shape {
 public:
 
-    Box2D(float h, float w, float mass, BoxType type = BoxType::External);
-
-    inline BoxType GetShapeType() { return this->shapeType; }
+    Box2D(float h, float w, float mass, ShapeType type = ShapeType::External);
 
     std::vector<glm::vec2> GetVertices();
 
@@ -29,5 +22,4 @@ private:
     float width;
     float height;
     std::vector<glm::vec2> vertices;
-    BoxType shapeType;
 };

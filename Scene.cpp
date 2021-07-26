@@ -9,7 +9,7 @@ void Scene::init()
 	selectedRigidBody = -1;
 	physicalEngine.SetResolverAcivity(true);
 
-	AddBox(100, 150, 1e8, BoxType::Internal);
+	AddBox(100, 150, 1e8, ShapeType::Internal);
 }
 
 void Scene::update(float dt)
@@ -38,7 +38,7 @@ void Scene::render()
 		auto vertices = rigidBody->GetVertices();
 		auto mass = rigidBody->GetMass();
 
-		auto isInternal = rigidBody->GetShapeType() == BoxType::Internal;
+		auto isInternal = rigidBody->GetShapeType() == ShapeType::Internal;
 
 		if (isInternal || this->selectedRigidBody == i) glColor3f(0, 0, 1);
 		else glColor3f(0, 1, 0);
@@ -63,7 +63,7 @@ void Scene::render()
 	glPopAttrib();
 }
 
-int Scene::AddBox(int h, int w, int mass, BoxType type)
+int Scene::AddBox(int h, int w, int mass, ShapeType type)
 {
 	Box2D* box2d = new Box2D(h, w, mass, type);
 	this->rigidBodies.push_back(box2d);
@@ -79,7 +79,7 @@ void Scene::Select(int x, int y)
 	for (int i = 0; i < this->rigidBodies.size(); i++)
 	{
 		auto box = this->rigidBodies[i];
-		if (box->GetShapeType() == BoxType::Internal) continue;
+		if (box->GetShapeType() == ShapeType::Internal) continue;
 
 		if (CollisionDetector::ShapeContainsPoint(box, p))
 		{

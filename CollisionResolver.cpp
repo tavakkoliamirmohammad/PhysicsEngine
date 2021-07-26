@@ -7,7 +7,7 @@ void CollisionResolver::Resolve(CollisionInfo& info)
 		ResolveAngular(info);
 
 		auto v = info.contactPoint - info.penetrationPoint;
-		auto r = info.box2->GetShape().mass / (info.box1->GetShape().mass + info.box2->GetShape().mass);
+		auto r = info.box2->GetMass() / (info.box1->GetMass() + info.box2->GetMass());
 		info.box1->MoveTo(-v.x * r, -v.y * r, true);
 		info.box2->MoveTo(v.x * (1 - r), v.y * (1 - r), true);
 	}
@@ -44,6 +44,6 @@ void CollisionResolver::ResolveAngular(CollisionInfo& info)
 	auto alpha1 = angleBetween(r1, p1);
 	auto alpha2 = angleBetween(r2, p2);
 
-	if (info.box1->GetShapeType() != BoxType::Internal) info.box1->Rotate(alpha1, true);
-	if (info.box2->GetShapeType() != BoxType::Internal) info.box2->Rotate(alpha2, true);
+	if (info.box1->GetShapeType() != ShapeType::Internal) info.box1->Rotate(alpha1, true);
+	if (info.box2->GetShapeType() != ShapeType::Internal) info.box2->Rotate(alpha2, true);
 }
