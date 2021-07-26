@@ -4,6 +4,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "Object.h"
+#include "CollisionDetector.h"
+#include "Circle.h"
 
 class Box2D : public Object {
 public:
@@ -19,6 +21,11 @@ public:
     bool ContainsPoint(glm::vec2 v) override;
 
     static glm::vec2 GetEdgeNormal(glm::vec2 edge);
+
+    static CollisionInfo DetectCollision(Box2D *box1, Box2D *box2);
+
+    static glm::vec2 ProjectToEdge(glm::vec2 v1, glm::vec2 v2, glm::vec2 p);
+
 
 private:
     float width;

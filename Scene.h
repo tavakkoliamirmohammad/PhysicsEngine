@@ -29,6 +29,8 @@ public:
 
     std::vector<Object *> GetRigidBodies();
 
+    int AddCircle(int r, int mass);
+
 private:
 
     PhysicalEngine physicalEngine;

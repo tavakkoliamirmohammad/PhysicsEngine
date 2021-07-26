@@ -3,12 +3,17 @@
 #include "Object.h"
 #include <tuple>
 
+enum class CollisionType {
+    BoxCircle, CircleCircle, BoxBox
+};
+
 struct CollisionInfo {
     Object *object1;
     Object *object2;
     glm::vec2 penetrationPoint;
     glm::vec2 contactPoint;
     glm::vec2 normal;
+    CollisionType collisionType;
     float penetrationDepth;
     bool isCollided;
 };
@@ -16,9 +21,6 @@ struct CollisionInfo {
 class CollisionDetector {
 public:
     static bool ShapeContainsPoint(Object *object, glm::vec2 p);
-
-    static glm::vec2 ProjectToEdge(glm::vec2 v1, glm::vec2 v2, glm::vec2 p);
-
 
     CollisionInfo Detect(Object *object1, Object *object2);
 

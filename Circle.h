@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "Object.h"
+#include "CollisionDetector.h"
 
 class Circle : public Object {
 public:
@@ -22,6 +23,7 @@ public:
 
     bool ContainsPoint(glm::vec2 v) override;
 
+    static CollisionInfo DetectCollision(Circle *circle1, Circle *circle2);
 
 private:
     float radius;

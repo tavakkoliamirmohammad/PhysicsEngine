@@ -27,7 +27,8 @@ namespace PhysicalSimulationGame {
     glm::vec2 press_mouse_position;
     glm::vec2 current_mouse_position;
     bool is_mouse_press;
-    bool create_shape;
+    bool create_box;
+    bool create_circle;
     float changeRotation;
 
     glm::vec2 viewport2camera(glm::vec2 point);
@@ -69,7 +70,9 @@ namespace PhysicalSimulationGame {
         } else if (key == GLFW_KEY_R) {
             changeRotation = 1;
         } else if (key == GLFW_KEY_C && action == GLFW_PRESS) {
-            create_shape = true;
+            create_circle = true;
+        } else if (key == GLFW_KEY_B && action == GLFW_PRESS) {
+            create_box = true;
         }
     }
 
@@ -89,7 +92,7 @@ namespace PhysicalSimulationGame {
             double diff_ms = std::chrono::duration<double, std::milli>(now - before).count();
             before = now;
             if (diff_ms > 10 && diff_ms < 250) {
-                create_shape = true;
+                create_box = true;
             } else {
                 auto pos = viewport2camera(glm::vec2(x, y));
                 scene->Select(pos.x, pos.y);
@@ -159,12 +162,19 @@ namespace PhysicalSimulationGame {
     }
 
     void processInput() {
-        if (create_shape) {
-            create_shape = false;
+        if (create_box) {
+            create_box = false;
             int h = 10 + (rand() / (float) RAND_MAX) * 20;
             int w = 10 + (rand() / (float) RAND_MAX) * 20;
             int m = 1 + (rand() / (float) RAND_MAX) * 3;
             scene->Select(scene->AddBox(h, w, m));
+            auto pos = viewport2camera(press_mouse_position);
+            scene->Move(pos.x, pos.y);
+        } else if (create_circle) {
+            create_circle = false;
+            int radius = 8 + (rand() / (float) RAND_MAX) * 5;
+            int mass = 10 + (rand() / (float) RAND_MAX) * 5;
+            scene->Select(scene->AddCircle(radius, mass));
             auto pos = viewport2camera(press_mouse_position);
             scene->Move(pos.x, pos.y);
         } else if (is_mouse_press && current_mouse_position != press_mouse_position) {

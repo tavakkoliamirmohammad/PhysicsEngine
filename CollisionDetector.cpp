@@ -1,79 +1,18 @@
 #include "CollisionDetector.h"
+#include "Circle.h"
+#include "Box2D.h"
 
 bool CollisionDetector::ShapeContainsPoint(Object *object, glm::vec2 v) {
     return object->ContainsPoint(v);
 }
 
-glm::vec2 CollisionDetector::ProjectToEdge(glm::vec2 v1, glm::vec2 v2, glm::vec2 p) {
-    auto e1 = v2 - v1;
-    auto e2 = p - v1;
-    float valDp = glm::dot(e1, e2);
-    float lenE1 = glm::length(e1);
-    float lenE2 = glm::length(e2);
-    float cos = valDp / (lenE1 * lenE2);
-    float projLenOfLine = cos * lenE2;
-    glm::vec2 projPoint = v1 + e1 / lenE1 * projLenOfLine;
-    return projPoint;
-}
-
-
 CollisionInfo CollisionDetector::Detect(Object *object1, Object *object2) {
-    CollisionInfo info({object1, object2, glm::vec2(0), glm::vec2(0), glm::vec2(0), 0, false});
-
-    auto box1_vertices = box1->GetVertices();
-    auto box2_vertices = box2->GetVertices();
-
-    auto n1 = box1_vertices.size();
-    auto n2 = box2_vertices.size();
-
-    float minPenetration = 1e10;
-    bool isInternal = box1->GetShapeType() == ObjectType::Internal;
-
-    bool isShapeInFrontOfEdge = true;
-
-    for (int i = 0; i < n1; i++) {
-        auto a = box1_vertices[i];
-        auto b = box1_vertices[(i + 1) % n1];
-
-        auto n = GetEdgeNormal(a - b);
-        if (isInternal) n = -n;
-        else isShapeInFrontOfEdge = true;
-
-        float maxPenetration = 0;
-        CollisionInfo max_info({box1, box2, glm::vec2(0), glm::vec2(0), glm::vec2(0), 0, false});
-
-        for (int j = 0; j < n2; j++) {
-            auto v = box2_vertices[j];
-
-            if (glm::dot(v - a, n) < 0) {
-                isShapeInFrontOfEdge = false;
-
-                auto p = ProjectToEdge(a, b, v);
-                //if (IsPointBetweenTwoPoint(a, b, p))
-                {
-                    auto penetration = glm::length(p - v);
-
-                    if (penetration > maxPenetration) {
-                        maxPenetration = penetration;
-                        max_info = CollisionInfo({box1, box2, v, p, n, penetration, true});
-                    }
-                }
-            }
-        }
-
-        if (isShapeInFrontOfEdge && !isInternal) {
-            info.isCollided = false;
-            return info;
-        } else if (max_info.isCollided) {
-            if (maxPenetration < minPenetration) {
-                minPenetration = maxPenetration;
-                info = max_info;
-            }
-        }
+    if (dynamic_cast<Circle *>(object1) != nullptr && dynamic_cast<Circle *>(object2) != nullptr) {
+        return Circle::DetectCollision(dynamic_cast<Circle *>(object1), dynamic_cast<Circle *>(object2));
+    } else if (dynamic_cast<Box2D *>(object1) != nullptr && dynamic_cast<Box2D *>(object2) != nullptr) {
+        return Box2D::DetectCollision(dynamic_cast<Box2D *>(object1), dynamic_cast<Box2D *>(object2));
     }
-
-    if (isShapeInFrontOfEdge) info.isCollided = false;
-    return info;
+    return CollisionInfo({object1, object2, glm::vec2(0), glm::vec2(0), glm::vec2(0), CollisionType::BoxBox, 0, false});;
 }
 
 std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Object *> *objects) {
@@ -81,16 +20,16 @@ std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Object *> *obje
 
     std::vector<CollisionInfo> result;
 
-    if (boxes->size() < 2) return result;
-    for (int i = 0; i < boxes->size() - 1; i++) {
-        auto box1 = (*boxes)[i];
-        for (int j = i + 1; j < boxes->size(); j++) {
-            auto box2 = (*boxes)[j];
+    if (objects->size() < 2) return result;
+    for (int i = 0; i < objects->size() - 1; i++) {
+        auto box1 = (*objects)[i];
+        for (int j = i + 1; j < objects->size(); j++) {
+            auto box2 = (*objects)[j];
 
             auto collision_info_1 = Detect(box1, box2);
             auto collision_info_2 = Detect(box2, box1);
 
-            bool isInternal = collision_info_1.box1->GetShapeType() == ObjectType::Internal;
+            bool isInternal = collision_info_1.object1->GetShapeType() == ObjectType::Internal;
 
             if (collision_info_1.isCollided && (isInternal || collision_info_2.isCollided)) {
                 auto pd1 = collision_info_1.penetrationDepth;
@@ -105,6 +44,5 @@ std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Object *> *obje
             }
         }
     }
-
     return result;
 }
