@@ -1,0 +1,3 @@
+/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir
