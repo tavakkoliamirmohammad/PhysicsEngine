@@ -20,6 +20,9 @@ public:
 
     void CalculateInertia() override;
 
+    bool ContainsPoint(glm::vec2 v) override;
+
+
 private:
     float radius;
 };

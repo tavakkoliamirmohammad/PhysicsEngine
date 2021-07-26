@@ -23,3 +23,7 @@ glm::vec2 Circle::GetCentroid() {
     centroid += center;
     return centroid;
 }
+
+bool Circle::ContainsPoint(glm::vec2 v) {
+    return glm::length(GetCenter() - v) <= GetRadius();
+}

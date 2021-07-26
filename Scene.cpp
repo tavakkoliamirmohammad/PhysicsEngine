@@ -126,7 +126,7 @@ void Scene::Move(float x, float y, bool isRelative)
 	}
 }
 
-std::vector<Box2D*> Scene::GetRigidBodies()
+std::vector<Object*> Scene::GetRigidBodies()
 {
 	return this->rigidBodies;
 }

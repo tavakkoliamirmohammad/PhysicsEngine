@@ -32,3 +32,29 @@ void Box2D::CalculateInertia() {
     float h = height;
     momentOfInertia = m * (w * w + h * h) / 12;
 }
+
+bool Box2D::ContainsPoint(glm::vec2 v) {
+    auto box1_vertices = GetVertices();
+    auto n1 = box1_vertices.size();
+
+    for (int i = 0; i < n1; i++)
+    {
+        auto a = box1_vertices[i];
+        auto b = box1_vertices[(i + 1) % n1];
+
+        auto n = GetEdgeNormal(a - b);
+
+        bool isShapeInFrontOfEdge = true;
+
+        if (glm::dot(v - a, n) > 0)
+            return false;
+    }
+
+    return true;
+}
+
+glm::vec2 Box2D::GetEdgeNormal(glm::vec2 edge) {
+    edge /= glm::length(edge);
+    auto n = glm::cross(glm::vec3(0, 0, 1), glm::vec3(edge, 0));
+    return glm::vec2(n.x, n.y);
+}

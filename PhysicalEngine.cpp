@@ -1,11 +1,11 @@
 #include "PhysicalEngine.h"
 
-void PhysicalEngine::AddRigidBody(Box2D* box2d)
+void PhysicalEngine::AddRigidBody(Object* object)
 {
-	this->RigidBodies->push_back(box2d);
+	this->RigidBodies->push_back(object);
 }
 
-void PhysicalEngine::SetRigidBodies(std::vector<Box2D*>* rigidBodies)
+void PhysicalEngine::SetRigidBodies(std::vector<Object*>* rigidBodies)
 {
 	this->RigidBodies = rigidBodies;
 }

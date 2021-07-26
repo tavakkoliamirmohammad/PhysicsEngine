@@ -23,6 +23,8 @@ public:
 
     void Rotate(float angle, bool relative = false);
 
+    virtual bool ContainsPoint(glm::vec2 v) = 0;
+
     void SetAngularVelocity(float av);
 
     void SetTorque(float torque);

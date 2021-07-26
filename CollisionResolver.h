@@ -1,5 +1,5 @@
 #pragma once
-#include "Box2D.h"
+#include "Object.h"
 #include "CollisionDetector.h"
 
 class CollisionResolver

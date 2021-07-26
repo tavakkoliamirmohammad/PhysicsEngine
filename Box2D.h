@@ -16,6 +16,10 @@ public:
 
     void CalculateInertia() override;
 
+    bool ContainsPoint(glm::vec2 v) override;
+
+    static glm::vec2 GetEdgeNormal(glm::vec2 edge);
+
 private:
     float width;
     float height;
