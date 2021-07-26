@@ -7,6 +7,8 @@ CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o
  /home/amir/projects/gameDesign/physics_engine/Shape.h
 CMakeFiles/PhysicalEngine.dir/Circle.cpp.o
  /home/amir/projects/gameDesign/physics_engine/Circle.cpp
+ /home/amir/projects/gameDesign/physics_engine/Circle.h
+ /home/amir/projects/gameDesign/physics_engine/Shape.h
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o
  /home/amir/projects/gameDesign/physics_engine/Box2D.h
  /home/amir/projects/gameDesign/physics_engine/CollisionDetector.cpp

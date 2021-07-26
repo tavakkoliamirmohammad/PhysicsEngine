@@ -6,6 +6,8 @@ CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/Box2D.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/Circle.cpp.o: ../Circle.cpp
+CMakeFiles/PhysicalEngine.dir/Circle.cpp.o: ../Circle.h
+CMakeFiles/PhysicalEngine.dir/Circle.cpp.o: ../Shape.h
 
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../Box2D.h
 CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o: ../CollisionDetector.cpp

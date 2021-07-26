@@ -14,11 +14,9 @@ public:
 
     glm::vec2 GetCentroid() override;
 
+    void CalculateInertia() override;
 
 private:
-
-    void CalculateBoxInertia();
-
     float width;
     float height;
     std::vector<glm::vec2> vertices;

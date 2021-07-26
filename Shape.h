@@ -39,6 +39,8 @@ public:
 
     virtual glm::vec2 GetCentroid() = 0;
 
+    virtual void CalculateInertia();
+
     inline ShapeType GetShapeType() { return this->shapeType; }
 
     inline float GetTorque() const { return this->torque; }

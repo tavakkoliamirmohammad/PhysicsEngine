@@ -6,7 +6,7 @@ Box2D::Box2D(float h, float w, float mass, ShapeType type) :
     vertices.emplace_back(w / 2, -h / 2);
     vertices.emplace_back(w / 2, h / 2);
     vertices.emplace_back(-w / 2, h / 2);
-    CalculateBoxInertia();
+    this->CalculateInertia();
 }
 
 std::vector<glm::vec2> Box2D::GetVertices() {
@@ -26,7 +26,7 @@ glm::vec2 Box2D::GetCentroid() {
     return centroid / (float) vertexes.size();
 }
 
-void Box2D::CalculateBoxInertia() {
+void Box2D::CalculateInertia() {
     float m = mass;
     float w = width;
     float h = height;

@@ -6,7 +6,6 @@ Shape::Shape(float mass, ShapeType type) :
         shapeType(type),
         position(0), linearVelocity(0), momentOfInertia(0), mass(mass), force(0),
         angle(0), angularVelocity(0), torque(0) {
-
 }
 
 void Shape::MoveTo(float x, float y, bool relative) {
@@ -53,5 +52,9 @@ float Shape::GetAngularMass(glm::vec2 r, glm::vec2 n) const {
     auto c = glm::cross(glm::vec3(r, 0), glm::vec3(n, 0)).z;
     auto m = momentOfInertia / c * c;
     return m;
+}
+
+void Shape::CalculateInertia() {
+
 }
 
