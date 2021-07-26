@@ -3,12 +3,12 @@
 #include <vector>
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
-#include "Shape.h"
+#include "Object.h"
 
-class Box2D : public Shape {
+class Box2D : public Object {
 public:
 
-    Box2D(float h, float w, float mass, ShapeType type = ShapeType::External);
+    Box2D(float h, float w, float mass, ObjectType type = ObjectType::External);
 
     std::vector<glm::vec2> GetVertices();
 

@@ -277,6 +277,33 @@ Game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Game.cpp.s
 .PHONY : Game.cpp.s
 
+Object.o: Object.cpp.o
+
+.PHONY : Object.o
+
+# target to build an object file
+Object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Object.cpp.o
+.PHONY : Object.cpp.o
+
+Object.i: Object.cpp.i
+
+.PHONY : Object.i
+
+# target to preprocess a source file
+Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Object.cpp.i
+.PHONY : Object.cpp.i
+
+Object.s: Object.cpp.s
+
+.PHONY : Object.s
+
+# target to generate assembly for a file
+Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Object.cpp.s
+.PHONY : Object.cpp.s
+
 PhysicalEngine.o: PhysicalEngine.cpp.o
 
 .PHONY : PhysicalEngine.o
@@ -331,33 +358,6 @@ Scene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Scene.cpp.s
 .PHONY : Scene.cpp.s
 
-Shape.o: Shape.cpp.o
-
-.PHONY : Shape.o
-
-# target to build an object file
-Shape.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Shape.cpp.o
-.PHONY : Shape.cpp.o
-
-Shape.i: Shape.cpp.i
-
-.PHONY : Shape.i
-
-# target to preprocess a source file
-Shape.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Shape.cpp.i
-.PHONY : Shape.cpp.i
-
-Shape.s: Shape.cpp.s
-
-.PHONY : Shape.s
-
-# target to generate assembly for a file
-Shape.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/PhysicalEngine.dir/build.make CMakeFiles/PhysicalEngine.dir/Shape.cpp.s
-.PHONY : Shape.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -409,15 +409,15 @@ help:
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"
+	@echo "... Object.o"
+	@echo "... Object.i"
+	@echo "... Object.s"
 	@echo "... PhysicalEngine.o"
 	@echo "... PhysicalEngine.i"
 	@echo "... PhysicalEngine.s"
 	@echo "... Scene.o"
 	@echo "... Scene.i"
 	@echo "... Scene.s"
-	@echo "... Shape.o"
-	@echo "... Shape.i"
-	@echo "... Shape.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

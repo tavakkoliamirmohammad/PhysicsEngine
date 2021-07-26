@@ -1,7 +1,7 @@
 #include "Circle.h"
 
 Circle::Circle(float radius, float mass, glm::vec2 origin) : radius(radius), origin(origin),
-                                                             Shape(mass, ShapeType::External) {
+                                                             Object(mass, ObjectType::External) {
     this->CalculateInertia();
 }
 

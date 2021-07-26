@@ -9,9 +9,9 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/amir/projects/gameDesign/physics_engine/CollisionDetector.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o"
   "/home/amir/projects/gameDesign/physics_engine/CollisionResolver.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o"
   "/home/amir/projects/gameDesign/physics_engine/Game.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/Game.cpp.o"
+  "/home/amir/projects/gameDesign/physics_engine/Object.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/Object.cpp.o"
   "/home/amir/projects/gameDesign/physics_engine/PhysicalEngine.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o"
   "/home/amir/projects/gameDesign/physics_engine/Scene.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/Scene.cpp.o"
-  "/home/amir/projects/gameDesign/physics_engine/Shape.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/Shape.cpp.o"
   "/home/amir/projects/gameDesign/physics_engine/main.cpp" "/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles/PhysicalEngine.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -1,7 +1,7 @@
 #include "Box2D.h"
 
-Box2D::Box2D(float h, float w, float mass, ShapeType type) :
-        height(h), width(w), Shape(mass, type) {
+Box2D::Box2D(float h, float w, float mass, ObjectType type) :
+        height(h), width(w), Object(mass, type) {
     vertices.emplace_back(-w / 2, -h / 2);
     vertices.emplace_back(w / 2, -h / 2);
     vertices.emplace_back(w / 2, h / 2);

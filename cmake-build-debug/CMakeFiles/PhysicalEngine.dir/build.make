@@ -180,18 +180,18 @@ CMakeFiles/PhysicalEngine.dir/Circle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PhysicalEngine.dir/Circle.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/projects/gameDesign/physics_engine/Circle.cpp -o CMakeFiles/PhysicalEngine.dir/Circle.cpp.s
 
-CMakeFiles/PhysicalEngine.dir/Shape.cpp.o: CMakeFiles/PhysicalEngine.dir/flags.make
-CMakeFiles/PhysicalEngine.dir/Shape.cpp.o: ../Shape.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/PhysicalEngine.dir/Shape.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PhysicalEngine.dir/Shape.cpp.o -c /home/amir/projects/gameDesign/physics_engine/Shape.cpp
+CMakeFiles/PhysicalEngine.dir/Object.cpp.o: CMakeFiles/PhysicalEngine.dir/flags.make
+CMakeFiles/PhysicalEngine.dir/Object.cpp.o: ../Object.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/PhysicalEngine.dir/Object.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PhysicalEngine.dir/Object.cpp.o -c /home/amir/projects/gameDesign/physics_engine/Object.cpp
 
-CMakeFiles/PhysicalEngine.dir/Shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PhysicalEngine.dir/Shape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/projects/gameDesign/physics_engine/Shape.cpp > CMakeFiles/PhysicalEngine.dir/Shape.cpp.i
+CMakeFiles/PhysicalEngine.dir/Object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PhysicalEngine.dir/Object.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amir/projects/gameDesign/physics_engine/Object.cpp > CMakeFiles/PhysicalEngine.dir/Object.cpp.i
 
-CMakeFiles/PhysicalEngine.dir/Shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PhysicalEngine.dir/Shape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/projects/gameDesign/physics_engine/Shape.cpp -o CMakeFiles/PhysicalEngine.dir/Shape.cpp.s
+CMakeFiles/PhysicalEngine.dir/Object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PhysicalEngine.dir/Object.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amir/projects/gameDesign/physics_engine/Object.cpp -o CMakeFiles/PhysicalEngine.dir/Object.cpp.s
 
 # Object files for target PhysicalEngine
 PhysicalEngine_OBJECTS = \
@@ -203,7 +203,7 @@ PhysicalEngine_OBJECTS = \
 "CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o" \
 "CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o" \
 "CMakeFiles/PhysicalEngine.dir/Circle.cpp.o" \
-"CMakeFiles/PhysicalEngine.dir/Shape.cpp.o"
+"CMakeFiles/PhysicalEngine.dir/Object.cpp.o"
 
 # External object files for target PhysicalEngine
 PhysicalEngine_EXTERNAL_OBJECTS =
@@ -216,7 +216,7 @@ PhysicalEngine: CMakeFiles/PhysicalEngine.dir/CollisionDetector.cpp.o
 PhysicalEngine: CMakeFiles/PhysicalEngine.dir/CollisionResolver.cpp.o
 PhysicalEngine: CMakeFiles/PhysicalEngine.dir/PhysicalEngine.cpp.o
 PhysicalEngine: CMakeFiles/PhysicalEngine.dir/Circle.cpp.o
-PhysicalEngine: CMakeFiles/PhysicalEngine.dir/Shape.cpp.o
+PhysicalEngine: CMakeFiles/PhysicalEngine.dir/Object.cpp.o
 PhysicalEngine: CMakeFiles/PhysicalEngine.dir/build.make
 PhysicalEngine: CMakeFiles/PhysicalEngine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/amir/projects/gameDesign/physics_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable PhysicalEngine"

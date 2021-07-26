@@ -112,6 +112,12 @@
 		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Game.h">
 			<Option target="PhysicalEngine"/>
 		</Unit>
+		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Object.cpp">
+			<Option target="PhysicalEngine"/>
+		</Unit>
+		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Object.h">
+			<Option target="PhysicalEngine"/>
+		</Unit>
 		<Unit filename="/home/amir/projects/gameDesign/physics_engine/PhysicalEngine.cpp">
 			<Option target="PhysicalEngine"/>
 		</Unit>
@@ -122,12 +128,6 @@
 			<Option target="PhysicalEngine"/>
 		</Unit>
 		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Scene.h">
-			<Option target="PhysicalEngine"/>
-		</Unit>
-		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Shape.cpp">
-			<Option target="PhysicalEngine"/>
-		</Unit>
-		<Unit filename="/home/amir/projects/gameDesign/physics_engine/Shape.h">
 			<Option target="PhysicalEngine"/>
 		</Unit>
 		<Unit filename="/home/amir/projects/gameDesign/physics_engine/main.cpp">

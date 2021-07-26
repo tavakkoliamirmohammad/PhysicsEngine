@@ -44,6 +44,6 @@ void CollisionResolver::ResolveAngular(CollisionInfo& info)
 	auto alpha1 = angleBetween(r1, p1);
 	auto alpha2 = angleBetween(r2, p2);
 
-	if (info.box1->GetShapeType() != ShapeType::Internal) info.box1->Rotate(alpha1, true);
-	if (info.box2->GetShapeType() != ShapeType::Internal) info.box2->Rotate(alpha2, true);
+	if (info.box1->GetShapeType() != ObjectType::Internal) info.box1->Rotate(alpha1, true);
+	if (info.box2->GetShapeType() != ObjectType::Internal) info.box2->Rotate(alpha2, true);
 }

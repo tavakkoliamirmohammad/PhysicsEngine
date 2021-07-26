@@ -13,7 +13,7 @@ public:
 	void update(float dt);
 	void render();
 
-	int AddBox(int h, int w, int mass, ShapeType type = ShapeType::External);
+	int AddBox(int h, int w, int mass, ObjectType type = ObjectType::External);
 	void Select(int x, int y);
 	void Select(int index);
 	int GetSelectedRigidBody();

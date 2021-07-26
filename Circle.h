@@ -3,9 +3,9 @@
 
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
-#include "Shape.h"
+#include "Object.h"
 
-class Circle : public Shape {
+class Circle : public Object {
 public:
 
     Circle(float r, float mass, glm::vec2 c);

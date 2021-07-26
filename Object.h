@@ -1,19 +1,19 @@
-#ifndef PHYSICALENGINE_SHAPE_H
-#define PHYSICALENGINE_SHAPE_H
+#ifndef PHYSICALENGINE_OBJECT_H
+#define PHYSICALENGINE_OBJECT_H
 
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include <vector>
 
-enum class ShapeType {
+enum class ObjectType {
     Internal,
     External
 };
 
-class Shape {
+class Object {
 public:
 
-    Shape(float mass, ShapeType type);
+    Object(float mass, ObjectType type);
 
     void MoveTo(float x, float y, bool relative = false);
 
@@ -41,7 +41,7 @@ public:
 
     virtual void CalculateInertia();
 
-    inline ShapeType GetShapeType() { return this->shapeType; }
+    inline ObjectType GetShapeType() { return this->shapeType; }
 
     inline float GetTorque() const { return this->torque; }
 
@@ -65,7 +65,7 @@ protected:
     float mass;
     float momentOfInertia;
 
-    ShapeType shapeType;
+    ObjectType shapeType;
 };
 
-#endif //PHYSICALENGINE_SHAPE_H
+#endif //PHYSICALENGINE_OBJECT_H
