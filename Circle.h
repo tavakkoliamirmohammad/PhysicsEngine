@@ -8,15 +8,13 @@
 class Circle : public Object {
 public:
 
-    Circle(float r, float mass, glm::vec2 c);
+    Circle(float radius, float mass);
 
     float GetRadius() const { return this->radius; };
 
     void SetRadius(float radius);
 
-    const glm::vec2 &GetOrigin() const;
-
-    void SetOrigin(const glm::vec2 &origin);
+    glm::vec2 GetCenter();
 
     glm::vec2 GetCentroid() override;
 
@@ -24,7 +22,6 @@ public:
 
 private:
     float radius;
-    glm::vec2 origin;
 };
 
 #endif //PHYSICALENGINE_CIRCLE_H
