@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include <cmath>
 
 Circle::Circle(float radius, float mass) : radius(radius), Object(mass, ObjectType::External) {
     this->CalculateInertia();
@@ -18,10 +19,7 @@ void Circle::CalculateInertia() {
 }
 
 glm::vec2 Circle::GetCentroid() {
-    glm::vec2 centroid(0);
-    auto center = position;
-    centroid += center;
-    return centroid;
+    return position;
 }
 
 bool Circle::ContainsPoint(glm::vec2 v) {
@@ -36,6 +34,6 @@ CollisionInfo Circle::DetectCollision(Circle *circle1, Circle *circle2) {
              glm::vec2(0),
              separationVector / glm::length(separationVector),
              CollisionType::CircleCircle,
-             penetrationDepth > 0 ? penetrationDepth : 0,
+             std::fabs(penetrationDepth),
              glm::length(separationVector) <= circle1->GetRadius() + circle2->GetRadius()});;
 }
