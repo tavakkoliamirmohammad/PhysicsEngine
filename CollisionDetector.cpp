@@ -62,12 +62,10 @@ std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Object *> *obje
 
 CollisionInfo CollisionDetector::Detect(Circle *circle, Box2D *box) {
     bool isInternal = box->GetShapeType() == ObjectType::Internal;
-
     if (isInternal) {
-        glm::vec2 normalVec;
         float penetration;
         glm::vec2 contactPoint;
-
+        glm::vec2 normal;
         if (circle->GetPosition().x + circle->GetRadius() > box->GetVertices()[1].x) {
             contactPoint = glm::vec2(box->GetVertices()[1].x, circle->GetPosition().y);
             glm::vec2 normalVec = circle->GetPosition() - contactPoint;
@@ -107,59 +105,41 @@ CollisionInfo CollisionDetector::Detect(Circle *circle, Box2D *box) {
                      true});
         } else {
             return CollisionInfo(
-                    {circle, box, glm::vec2(0), contactPoint, normalVec, CollisionType::BoxCircle, penetration,
+                    {circle, box, glm::vec2(0), contactPoint, normal, CollisionType::BoxCircle, penetration,
                      false});
         }
     }
 
-    // Rotate circle's center point back
-    double unrotatedCircleX = cos(box->GetAngle()) * (circle->GetPosition().x - box->GetPosition().x) -
-                              sin(box->GetAngle()) * (circle->GetPosition().y - box->GetPosition().y) +
-                              box->GetPosition().x;
-    double unrotatedCircleY = sin(box->GetAngle()) * (circle->GetPosition().x - box->GetPosition().x) +
-                              cos(box->GetAngle()) * (circle->GetPosition().y - box->GetPosition().y) +
-                              box->GetPosition().y;
+    glm::vec2 originalCircle = glm::vec2(cos(box->GetAngle()) * (circle->GetPosition().x - box->GetPosition().x) -
+                                         sin(box->GetAngle()) * (circle->GetPosition().y - box->GetPosition().y) +
+                                         box->GetPosition().x,
+                                         sin(box->GetAngle()) * (circle->GetPosition().x - box->GetPosition().x) +
+                                         cos(box->GetAngle()) * (circle->GetPosition().y - box->GetPosition().y) +
+                                         box->GetPosition().y);
 
-    // Closest point in the rectangle to the center of circle rotated backwards(unrotated)
-    double closestX, closestY;
+    glm::vec2 nearestPoint = glm::vec2(originalCircle.x, originalCircle.y);
+    if (originalCircle.x < box->GetVertices()[0].x)
+        nearestPoint.x = box->GetVertices()[0].x;
+    else if (originalCircle.x > box->GetVertices()[0].x + box->GetWidth())
+        nearestPoint.x = box->GetVertices()[0].x + box->GetWidth();
 
-    // Find the unrotated closest x point from center of unrotated circle
-    if (unrotatedCircleX < box->GetVertices()[0].x)
-        closestX = box->GetVertices()[0].x;
-    else if (unrotatedCircleX > box->GetVertices()[0].x + box->GetWidth())
-        closestX = box->GetVertices()[0].x + box->GetWidth();
-    else
-        closestX = unrotatedCircleX;
+    if (originalCircle.y < box->GetVertices()[0].y)
+        nearestPoint.y = box->GetVertices()[0].y;
+    else if (originalCircle.y > box->GetVertices()[0].y + box->GetHeight())
+        nearestPoint.y = box->GetVertices()[0].y + box->GetHeight();
 
-    // Find the unrotated closest y point from center of unrotated circle
-    if (unrotatedCircleY < box->GetVertices()[0].y)
-        closestY = box->GetVertices()[0].y;
-    else if (unrotatedCircleY > box->GetVertices()[0].y + box->GetHeight())
-        closestY = box->GetVertices()[0].y + box->GetHeight();
-    else
-        closestY = unrotatedCircleY;
-
-    // Determine collision
-    bool collision = false;
-
-    double distance = findDistance(unrotatedCircleX, unrotatedCircleY, closestX, closestY);
-
-    auto contactPoint = glm::vec2(closestX, closestY);
-
-    float penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
-
-    glm::vec2 normalVec = circle->GetPosition() - contactPoint;
-    normalVec = glm::normalize(normalVec);
+    double distance = glm::distance(originalCircle, nearestPoint);
+    auto collisionInfo = CollisionInfo(
+            {circle, box, glm::vec2(0), nearestPoint,
+             glm::normalize(circle->GetPosition() - nearestPoint),
+             CollisionType::BoxCircle,
+             circle->GetRadius() - glm::length(circle->GetPosition() - nearestPoint), false});
 
     if (distance < circle->GetRadius()) {
-        collision = true;
-
-        return CollisionInfo(
-                {circle, box, circle->GetCenter() - normalVec * circle->GetRadius(), contactPoint, normalVec,
-                 CollisionType::BoxCircle, penetration, true});
-    } else {
-        collision = false;
-        return CollisionInfo(
-                {circle, box, glm::vec2(0), contactPoint, normalVec, CollisionType::BoxCircle, penetration, false});
+        collisionInfo.penetrationPoint = circle->GetCenter() -
+                                         glm::normalize(circle->GetPosition() - nearestPoint) *
+                                         circle->GetRadius();
+        collisionInfo.isCollided = true;
     }
+    return collisionInfo;
 }
