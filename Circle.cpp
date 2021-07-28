@@ -32,8 +32,8 @@ CollisionInfo Circle::DetectCollision(Circle *circle1, Circle *circle2) {
     return CollisionInfo(
             {circle1, circle2, glm::vec2(0),
              glm::vec2(0),
-             separationVector / glm::length(separationVector),
+             glm::normalize(separationVector),
              CollisionType::CircleCircle,
-             std::fabs(penetrationDepth),
+             static_cast<float>(fmax(penetrationDepth, 0)),
              glm::length(separationVector) <= circle1->GetRadius() + circle2->GetRadius()});;
 }
