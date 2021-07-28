@@ -3,6 +3,9 @@
 #include "Object.h"
 #include <tuple>
 
+class Circle;
+class Box2D;
+
 enum class CollisionType {
     BoxCircle, CircleCircle, BoxBox
 };
@@ -23,6 +26,8 @@ public:
     static bool ShapeContainsPoint(Object *object, glm::vec2 p);
 
     CollisionInfo Detect(Object *object1, Object *object2);
+
+    CollisionInfo Detect(Circle *circle, Box2D *box2D);
 
     std::vector<CollisionInfo> Detect(std::vector<Object *> *objects);
 };

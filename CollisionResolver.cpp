@@ -5,22 +5,19 @@ void CollisionResolver::Resolve(CollisionInfo &info) {
         if (info.collisionType == CollisionType::BoxBox) {
             ResolveAngular(info);
             auto v = info.contactPoint - info.penetrationPoint;
-            auto r = info.object2->GetMass() /
-                     (info.object1->GetMass() + info.object2->GetMass());
+            auto r = info.object2->GetMass() / (info.object1->GetMass() + info.object2->GetMass());
             info.object1->MoveTo(-v.x * r, -v.y * r, true);
             info.object2->MoveTo(v.x * (1 - r), v.y * (1 - r), true);
         } else if (info.collisionType == CollisionType::CircleCircle) {
-            auto r = info.object2->GetMass() /
-                     (info.object1->GetMass() + info.object2->GetMass());
             auto n = info.normal;
             auto p = info.penetrationDepth;
+            auto r = info.object1->GetMass() / (info.object1->GetMass() + info.object2->GetMass());
             info.object1->MoveTo(n.x * r * p, n.y * r * p, true);
             info.object2->MoveTo(-n.x * (1 - r) * p, -n.y * (1 - r) * p, true);
         } else if (info.collisionType == CollisionType::BoxCircle) {
-            auto r = info.object2->GetMass() /
-                     (info.object1->GetMass() + info.object2->GetMass());
             auto n = info.normal;
             auto p = info.penetrationDepth;
+            auto r = info.object2->GetMass() / (info.object1->GetMass() + info.object2->GetMass());
             info.object1->MoveTo(n.x * r * p, n.y * r * p, true);
             info.object2->MoveTo(-n.x * (1 - r) * p, -n.y * (1 - r) * p, true);
         }

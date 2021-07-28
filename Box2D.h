@@ -26,6 +26,10 @@ public:
 
     static glm::vec2 ProjectToEdge(glm::vec2 v1, glm::vec2 v2, glm::vec2 p);
 
+    float GetWidth() { return this->width; };
+
+    float GetHeight() { return this->height; };
+
 
 private:
     float width;
