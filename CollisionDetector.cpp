@@ -7,13 +7,6 @@ bool CollisionDetector::ShapeContainsPoint(Object *object, glm::vec2 v) {
     return object->ContainsPoint(v);
 }
 
-double findDistance(double fromX, double fromY, double toX, double toY) {
-    double a = abs(fromX - toX);
-    double b = abs(fromY - toY);
-
-    return sqrt((a * a) + (b * b));
-}
-
 CollisionInfo CollisionDetector::Detect(Object *object1, Object *object2) {
     if (dynamic_cast<Circle *>(object1) != nullptr && dynamic_cast<Circle *>(object2) != nullptr) {
         return Circle::DetectCollision(dynamic_cast<Circle *>(object1), dynamic_cast<Circle *>(object2));
@@ -60,55 +53,39 @@ std::vector<CollisionInfo> CollisionDetector::Detect(std::vector<Object *> *obje
     return result;
 }
 
+CollisionInfo DetectInternalBoxCircle(Circle *circle, Box2D *box) {
+    glm::vec2 contactPoint;
+    glm::vec2 normal;
+    bool collided;
+    if (circle->GetPosition().x + circle->GetRadius() > box->GetVertices()[1].x) {
+        contactPoint = glm::vec2(box->GetVertices()[1].x, circle->GetPosition().y);
+        normal = glm::normalize(circle->GetPosition() - contactPoint);
+        collided = true;
+    } else if (circle->GetPosition().x - circle->GetRadius() < box->GetVertices()[3].x) {
+        contactPoint = glm::vec2(box->GetVertices()[3].x, circle->GetPosition().y);
+        normal = glm::normalize(circle->GetPosition() - contactPoint);
+        collided = true;
+    } else if (circle->GetPosition().y + circle->GetRadius() > box->GetVertices()[3].y) {
+        contactPoint = glm::vec2(circle->GetPosition().x, box->GetVertices()[3].y);
+        normal = glm::normalize(circle->GetPosition() - contactPoint);
+        collided = true;
+    } else if (circle->GetPosition().y - circle->GetRadius() < box->GetVertices()[1].y) {
+        contactPoint = glm::vec2(circle->GetPosition().x, box->GetVertices()[1].y);
+        normal = glm::normalize(circle->GetPosition() - contactPoint);
+        collided = true;
+    } else {
+        collided = false;
+    }
+    float penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
+    return CollisionInfo(
+            {circle, box, circle->GetPosition(), contactPoint, normal, CollisionType::BoxCircle, penetration,
+             collided});
+}
+
 CollisionInfo CollisionDetector::Detect(Circle *circle, Box2D *box) {
     bool isInternal = box->GetShapeType() == ObjectType::Internal;
-    if (isInternal) {
-        float penetration;
-        glm::vec2 contactPoint;
-        glm::vec2 normal;
-        if (circle->GetPosition().x + circle->GetRadius() > box->GetVertices()[1].x) {
-            contactPoint = glm::vec2(box->GetVertices()[1].x, circle->GetPosition().y);
-            glm::vec2 normalVec = circle->GetPosition() - contactPoint;
-            normalVec = glm::normalize(normalVec);
-            penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
-
-            return CollisionInfo(
-                    {circle, box, circle->GetPosition(), contactPoint, normalVec, CollisionType::BoxCircle, penetration,
-                     true});
-        } else if (circle->GetPosition().x - circle->GetRadius() < box->GetVertices()[3].x) {
-            contactPoint = glm::vec2(box->GetVertices()[3].x, circle->GetPosition().y);
-            glm::vec2 normalVec = circle->GetPosition() - contactPoint;
-            normalVec = glm::normalize(normalVec);
-            penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
-
-            return CollisionInfo(
-                    {circle, box, circle->GetPosition(), contactPoint, normalVec, CollisionType::BoxCircle,
-                     penetration, true});
-        }
-        if (circle->GetPosition().y + circle->GetRadius() > box->GetVertices()[3].y) {
-            contactPoint = glm::vec2(circle->GetPosition().x, box->GetVertices()[3].y);
-            glm::vec2 normalVec = circle->GetPosition() - contactPoint;
-            normalVec = glm::normalize(normalVec);
-            penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
-
-            return CollisionInfo(
-                    {circle, box, circle->GetPosition(), contactPoint, normalVec, CollisionType::BoxCircle, penetration,
-                     true});
-        } else if (circle->GetPosition().y - circle->GetRadius() < box->GetVertices()[1].y) {
-            contactPoint = glm::vec2(circle->GetPosition().x, box->GetVertices()[1].y);
-            glm::vec2 normalVec = circle->GetPosition() - contactPoint;
-            normalVec = glm::normalize(normalVec);
-            penetration = circle->GetRadius() - glm::length(circle->GetPosition() - contactPoint);
-
-            return CollisionInfo(
-                    {circle, box, circle->GetPosition(), contactPoint, normalVec, CollisionType::BoxCircle, penetration,
-                     true});
-        } else {
-            return CollisionInfo(
-                    {circle, box, glm::vec2(0), contactPoint, normal, CollisionType::BoxCircle, penetration,
-                     false});
-        }
-    }
+    if (isInternal)
+        return DetectInternalBoxCircle(circle, box);
 
     glm::vec2 originalCircle = glm::vec2(cos(box->GetAngle()) * (circle->GetPosition().x - box->GetPosition().x) -
                                          sin(box->GetAngle()) * (circle->GetPosition().y - box->GetPosition().y) +
